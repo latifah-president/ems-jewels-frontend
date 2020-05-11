@@ -135,31 +135,30 @@ const useStyles = makeStyles(theme => ({
   console.log(email, 'email')
       return (
         <Grid container item xs={12} className={classes.wrapper}>
-       
           <form className={classes.form} >
             <FormControl className={classes.formControl}>
-            <TextField
-              required
-              className={classes.textFieldWide}
-              id="firstName"
-              type="text"
-              label="First Name"
-              margin="dense"
-              variant="outlined"
-              value={first_name}
-              onChange={e => setFirstName(e.target.value)}
-            />
               <TextField
-              required
-              className={classes.textFieldWide}
-              id="lastName"
-              type="text"
-              label="Last Name"
-              margin="dense"
-              variant="outlined"
-              value={last_name}
-              onChange={e => setLastName(e.target.value)}
-            />
+                required
+                className={classes.textFieldWide}
+                id="firstName"
+                type="text"
+                label="First Name"
+                margin="dense"
+                variant="outlined"
+                value={first_name}
+                onChange={e => setFirstName(e.target.value)}
+              />
+                <TextField
+                required
+                className={classes.textFieldWide}
+                id="lastName"
+                type="text"
+                label="Last Name"
+                margin="dense"
+                variant="outlined"
+                value={last_name}
+                onChange={e => setLastName(e.target.value)}
+              />
             </FormControl>
            
             <FormControl className={classes.formControl}>
@@ -176,20 +175,27 @@ const useStyles = makeStyles(theme => ({
                   helperText={errorMsg}
                   onChange={e => setEmail(e.target.value)}
                 />
-                    <TextField
-              required
-              className={classes.textFieldWide}
-              id="password"
-              label="Password"
-              type="password"
-              margin="dense"
-              variant="outlined"
-              value={password}
-              helperText={errorMsg}
-              onChange={e => setPassword(e.target.value)}
-            />
+              <TextField
+                required
+                className={classes.textFieldWide}
+                id="password"
+                label="Password"
+                type="password"
+                margin="dense"
+                variant="outlined"
+                value={password}
+                helperText={errorMsg}
+                onChange={e => setPassword(e.target.value)}
+              />
             </FormControl>
-{/* 
+          </form>
+          <Button className={classes.btn} type="submit" variant="contained" color="primary" onClick={signUpWithEmailAndPassword}>Sign Up</Button>
+      </Grid>
+    )
+  }
+  export default Form;
+
+  {/* 
            <FormControl className={classes.formControl}>
         <TextField
                 required
@@ -204,225 +210,3 @@ const useStyles = makeStyles(theme => ({
                 onChange={e => setPassword2(e.target.value)}
               /> 
            </FormControl> */}
-          </form>
-          <Button className={classes.btn} type="submit" variant="contained" color="primary" onClick={signUpWithEmailAndPassword}>Sign Up</Button>
-  
-     
-      </Grid>
-      
-  //       <div style={{border: '2rem solid red'}}>
-  //           <div className="sign-up-wrapper">
-  //     <div className="sign-up-left" />
-  //     <div className="sign-up-right">
-        
-          
-            
-  //           <form
-              
-  //             onSubmit={e => e.preventDefault() && false}
-  //           >
-            
-  //           <h2>
-  //             Register Account
-  //           </h2>
-              
-  //               <label htmlFor="email">Email Address</label>
-  //               <input
-  //                 className="input-field"
-  //                 id="email"
-  //                 name="email"
-         
-  //                 value={email}
-  //                 onChange={e => setEmail(e.target.value)}
-  //               />
-              
-             
-  //               <label htmlFor="password">Password</label>
-  //               <input
-  //                 className="input-field"
-  //                 name="password"
-  //                 type="password"
-  //                 id="password"
-             
-  //                 value={password}
-  //                 onChange={e => setPassword(e.target.value)}
-  //               />
-             
-  //            <label htmlFor="password">First Name</label>
-  //               <input
-  //                 className="input-field"
-  //                 name="fist-name"
-  //                 type="text"
-  //                 id="first-name"
-                 
-  //                 value={first_name}
-  //                 onChange={e => setFirstName(e.target.value)}
-  //               />
-                
-  //               <label htmlFor="last name">Last name</label>
-  //               <input
-  //                 className="input-field"
-  //                 name="last name"
-  //                 type="text"
-  //                 id="last-name"
-          
-  //                 value={last_name}
-  //                 onChange={e => setLastName(e.target.value)}
-  //               />
-  //  <label htmlFor="address">Address</label>
-  //               <input
-  //                 className="input-field"
-  //                 name="address"
-  //                 type="text"
-  //                 id='address'
-          
-  //                 value={address}
-  //                 onChange={e => setAddress(e.target.value)}
-  //               />
-  //                  <label htmlFor="city">City</label>
-  //               <input
-  //                 className="input-field"
-  //                 name='city'
-  //                 type="text"
-  //                 id='city'
-          
-  //                 value={city}
-  //                 onChange={e => setCity(e.target.value)}
-  //               />
-  //                   <label htmlFor="stateInp">State</label>
-  //               <input
-  //                 className="input-field"
-  //                 name='stateInp'
-  //                 type="text"
-  //                 id='stateInp'
-          
-  //                 value={stateInp}
-  //                 onChange={e => setStateInp(e.target.value)}
-  //               />
-  //                    <label htmlFor='zip'>Zip</label>
-  //               <input
-  //                 className="input-field"
-  //                 name='zip'
-  //                 type="text"
-  //                 id='zip'
-          
-  //                 value={zip}
-  //                 onChange={e => setZip(e.target.value)}
-  //               />
-  //                   <label htmlFor='phone'>Phone Number</label>
-  //               <input
-  //                 className="input-field"
-  //                 name='phone'
-  //                 type="text"
-  //                 id='phone'
-          
-  //                 value={phone}
-  //                 onChange={e => setPhone(e.target.value)}
-  //               />
-  //             <button
-  //               type="submit"
-               
-  //               onClick={signUpWithEmailAndPassword}
-  //               className='sign-up-button'
-  //             >
-  //               Register
-  //             </button>
-  //             <button
-  //               type="submit"
-               
-  //               onClick={logout}
-  //               className='sign-up-button'
-  //             >
-  //               log out
-  //             </button>
-             
-  //           </form>
-          
-  //     </div>
-  //   </div>
-          
-  //       </div>
-        // <div style={{border: '1px solid red'}}>
-        //   <form >
-        //     <label htmlFor='email'>Email</label>
-        //     <input
-        //       id='email'
-        //       name='email'
-        //       type='text'
-        //       value={email}
-        //       onChange={(e) => setEmail(e.target.value)}
-        //     />
-        //      <label htmlFor='first_name'>Fist Name</label>
-        //     <input
-        //       id='first_name'
-        //       name='first_name'
-        //       type='text'
-        //       value={first_name}
-        //       onChange={(e) => setFirstName(e.target.value)}
-        //     />
-        //       <label htmlFor='last_name'>Last Name</label>
-        //     <input
-        //       id='last_name'
-        //       name='last_name'
-        //       type='text'
-        //       value={last_name}
-        //       onChange={(e) => setLastName(e.target.value)}
-        //     />
-        //       <label htmlFor='address'>Address</label>
-        //     <input
-        //       id='address'
-        //       name='address'
-        //       type='text'
-        //       value={address}
-        //       onChange={(e) => setAddress(e.target.value)}
-        //     />
-        //      <label htmlFor='city'>City</label>
-        //     <input
-        //       id='city'
-        //       name='city'
-        //       type='text'
-        //       value={city}
-        //       onChange={(e) => setCity(e.target.value)}
-        //     />
-        //      <label htmlFor='state'>State</label>
-        //     <input
-        //       id='state'
-        //       name='state'
-        //       type='text'
-        //       value={stateInp}
-        //       onChange={(e) => setStateInp(e.target.value)}
-        //     />
-        //       <label htmlFor='zip'>Zip</label>
-        //     <input
-        //       id='zip'
-        //       name='zip'
-        //       type='text'
-        //       value={zip}
-        //       onChange={(e) => setZip(e.target.value)}
-        //     />
-        //        <label htmlFor='phoneNumber'>Phone Number</label>
-        //     <input
-        //       id='phone'
-        //       name='phone'
-        //       type='text'
-        //       value={phone}
-        //       onChange={(e) => setPhone(e.target.value)}
-        //     />
-        //     <button onClick={signUpWithEmailAndPassword}>Register</button>
-        //   </form>
-        //   <button onClick={logout}>Log Out</button>
-        // </div>
-          // <AuthContext>
-  
-        
-      //     <div style={{border: '2rem solid red'}}>
-      //        <div style={{border: '2rem solid red'}}>
-      //       <div className="sign-up-wrapper">
-      // <div className="sign-up-left" />
-      // <div className="sign-up-right">
-        
-          
-          
-  
-            )}
-            export default Form
