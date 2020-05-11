@@ -1,29 +1,50 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import { auth} from './../../firebaseConfig';
+import { auth} from '../../firebaseConfig';
 import { NavLink, withRouter } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
-import {Header, NavWrapper, LinkContainer, Logo, PageNav, MobileLinks, MobileNav} from './../../GlobalStyles/styles';
-import {logOut} from './../../Store/Actions/users';
+import Badge from '@material-ui/core/Badge';
+import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {Header, NavWrapper, LinkContainer, Logo, PageNav, MobileLinks, MobileNav, purpleColor} from '../../GlobalStyles/styles';
+import {logOut} from '../../Store/Actions/users';
+
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+      right: -1,
+      top: 3,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+      color: `${purpleColor}`,
+      fontSize: "1rem",
+    },
+  }))(Badge);
 
 const Nav= (props) => {
     const loggedIn = useSelector(state => state.user.loggedIn);
     const firebase_id = useSelector(state => state.user.firebase_id);
+    const qty = useSelector(state => state.user.cart.qty);
+        {/*TODO: CLEAN THIS UP TO INCLUDE A THEN CATCH  */}
+
     const logout = () => {
         auth.signOut();
         localStorage.clear();
         props.history.push("/");
       };
 
+      const renderAdminLinks = (
+          <React.Fragment className={loggedIn ? null : 'hide'}>
+            <NavLink className='link' activeClassName='activeRoute' to='/addproduct'>Add Product</NavLink>
+            <NavLink className='link' activeClassName='activeRoute' to='/orders'>Orders</NavLink>
+            <NavLink className='link' activeClassName='activeRoute' to='/customers'>Customers</NavLink>
+          </React.Fragment>
+      );
+
       return (
         <Header>
             <NavWrapper endNav>
                 <LinkContainer>
-                <button className={loggedIn ? null : 'hide'} onClick={logout}>Sign Out</button>
-                {/* <NavLink className='link' activeClassName='activeRoute' exact to='/signin'>
-                    Sign In
-                </NavLink> */}
+                <NavLink className={loggedIn ? 'link' : 'hide'} onClick={logout} to='/'>Sign Out</NavLink>
                 <NavLink className='link' activeClassName='activeRoute' exact to={loggedIn ? `/profile/${firebase_id}` : '/register'}>
                     {loggedIn ? 'Account' : 'Create An Account'}
                 </NavLink>
@@ -32,9 +53,12 @@ const Nav= (props) => {
                 <NavLink className={loggedIn ? 'hide' : 'link'} activeClassName='activeRoute' exact to='/signin'>
                         Sign In
                 </NavLink>
-                <NavLink exact to='/cart'>
-                    <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
-                </NavLink>
+                {renderAdminLinks}
+                <IconButton aria-label="cart">
+                    <StyledBadge badgeContent={qty}>
+                        <ShoppingCartIcon className='icon'/>
+                    </StyledBadge>
+                </IconButton>
                 </LinkContainer>
             </NavWrapper>
             <Logo>
@@ -58,11 +82,8 @@ const Nav= (props) => {
                     <NavLink className='link' activeClassName='activeRoute'  exact to='/guypieces'> 
                         guy pieces
                     </NavLink>
-                {/* </MobileLinks> */}
-
-                {/* <MobileLinks bottom> */}
                     <NavLink className='link' activeClassName='activeRoute'  exact to='/earringssets'> 
-                        earrings sets
+                        earring sets
                     </NavLink>
                     <NavLink className='link' activeClassName='activeRoute'  exact to='/chokers'> 
                         chokers
@@ -73,10 +94,8 @@ const Nav= (props) => {
                     <NavLink className='link' activeClassName='activeRoute'  exact to='/anklets'> 
                         anklets
                     </NavLink>
-                {/* </MobileLinks> */}
             </PageNav>
 
-            {/* MOBILE NAV */}
             <MobileNav>
             <PageNav >
                 <MobileLinks>

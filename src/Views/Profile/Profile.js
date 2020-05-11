@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import ProfileNav from './../../Containers/Nav/ProfileNav';
+import ProfileNav from '../../Components/Nav/ProfileNav';
 import {Wrapper, DarkTitle, ContentArea, } from '../../GlobalStyles/styles';
 
 const Profile = (props) => {

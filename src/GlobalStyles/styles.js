@@ -13,7 +13,6 @@ const GreenRadient = "#80D0C7";
 
 const smrtphn = '370px'; 
 const tablet = '600px';
-const laptop = '1440px';
 
 export const Wrapper = styled.main`
     margin-top: 2rem;
@@ -76,7 +75,7 @@ export const LinkContainer = styled.ul`
     justify-content:space-around;
     margin: auto 1.5rem auto 0;
     align-items: center;
-    width: 20%;
+    width: 30%;
      /* border: 1px solid red; */
      .link {
         color: ${whiteColor};
@@ -86,7 +85,15 @@ export const LinkContainer = styled.ul`
                 color: ${goldColor}
             }
     }
-    
+    button {
+        background: none;
+        border: none;
+        text-transform: uppercase;
+        font-size: .9rem;
+        font-weight: 700;
+        padding: 0;
+
+    }
     span {
         color: ${goldColor};
     }

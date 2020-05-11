@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {whiteColor, goldColor, fontColor, lightGrayColor, purpleColor} from './../../GlobalStyles/styles';
+import {whiteColor, lightGrayColor, purpleColor} from '../../GlobalStyles/styles';
 
 export const ProfileNavWrapper = styled.nav`
     display: flex;

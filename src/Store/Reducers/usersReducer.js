@@ -29,7 +29,6 @@ export default (state = initialState, actions) => {
                 loading: true
             }
         case authTypes.AUTH_SUCCESS:
-            console.log(actions.payload[0].email, "authenticated user")
             return {
                 ...state,
                 loading: false,

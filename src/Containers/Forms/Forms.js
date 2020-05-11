@@ -1,16 +1,13 @@
-
-
-
 import React, {useState} from 'react';
-import {auth} from './../../firebaseConfig';
+import {auth} from '../../firebaseConfig';
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from '@material-ui/core/Grid';
 import TextField from "@material-ui/core/TextField";
-import {GreenRadient, mainBtnColor} from './../../GlobalStyles/styles'
+import {GreenRadient, mainBtnColor} from '../../GlobalStyles/styles'
 import {useDispatch} from 'react-redux';
-import { register } from "./../../Store/Actions/users";
+import { register } from "../../Store/Actions/users";
 
 const useStyles = makeStyles(theme => ({
   wrapper: {

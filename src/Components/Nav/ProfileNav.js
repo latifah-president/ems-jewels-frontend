@@ -1,6 +1,5 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {NavWrapper, } from './../../GlobalStyles/styles';
 import {ProfileNavWrapper, ProfileLinkContainer, } from './page-nav-styles';
 import {useSelector} from "react-redux";
 

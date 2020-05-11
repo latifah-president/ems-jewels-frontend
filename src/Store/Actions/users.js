@@ -10,7 +10,6 @@ export const initAuth = (email, uid, idToken) => dispatch => {
         axios.get(`/user/${uid}`)
         .then(res => {
             if (res.status === 200) {
-                console.log("user res data", res.data)
                 dispatch({
                     type: authTypes.AUTH_SUCCESS,
                     payload: res.data
@@ -36,11 +35,8 @@ export const register = (userObj) =>  (dispatch) => {
         type: authTypes.REGISTER_START
     })
 
-    console.log("user from frontend registation:", userObj)
-
     axios.post("/register", { ...userObj })
     .then(res =>{
-    console.log(res.data, 'res.data.users')
     if (res.status === 201) {
         const data = {
             first_name: userObj.first_name,
