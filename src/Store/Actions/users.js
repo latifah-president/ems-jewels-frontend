@@ -1,77 +1,88 @@
 import {authTypes} from './actionTypes';
-import axios from 'axios';
-import url from './../../axios';
+import axios from './../../axiosInstance';
 
-export const getUsers = () => dispatch => {
+export const initAuth = (email, uid, idToken) => dispatch => {
     dispatch ({
         type: authTypes.AUTH_START
     })
-    axios.get(`http://localhost:5000/users`)
+    if (uid) {
+        axios.defaults.headers.common["Authorization"] = idToken;
+        axios.get(`/user/${uid}`)
         .then(res => {
-            console.log(res.data, 'res.data.users')
-            dispatch({
-                type: authTypes.AUTH_SUCCESS,
-                payload: res.data
-            })
-        })
-            .catch( err => {
+            if (res.status === 200) {
+                console.log("user res data", res.data)
                 dispatch({
-                    type: authTypes.AUTH_FAIL,
-                    payload: err
+                    type: authTypes.AUTH_SUCCESS,
+                    payload: res.data
                 })
-            })
-};
-
-export const initOauth = user => dispatch => {
-    dispatch ({
-        type: authTypes.AUTH_START
-    })
-
-    axios.defaults.headers.common["Authorization"] = user.ftoken;
-
-    axios.get(`http://localhost:5000/users`)
-    .then(res => {
-        dispatch({
-            type: authTypes.AUTH_SUCCESS,
-            payload: res.data
-        })
-    })
-    .catch( err => {
-        dispatch({
-            type: authTypes.AUTH_FAIL,
-            payload: err
-        })
-    })
-}
-export const register = (user) => dispatch => {
-    dispatch({
-        type: authTypes.REGISTER_START
-    })
-    axios.defaults.headers.common['Authorization'] = user.ra
-    axios
-        .post(`/users/register`, user )
-        .then(res => {
-            // console.log(res.data.user.id, 'in register action')
-            const payload = {
-                ...res.data,
-                ...user
             }
-            dispatch({
-                type: authTypes.REGISTER_SUCCESS,
-                payload: payload
-            })
-
         })
         .catch(err => {
             dispatch({
-                type: authTypes.REGISTER_FAIL,
+                type: authTypes.AUTH_FAIL,
                 payload: err
             })
         })
+    } else {
+        dispatch ({
+            type: authTypes.AUTH_FAIL,
+            payload: "No uid provided"
+        })
+    }
+};
+
+export const register = (userObj) =>  (dispatch) => {
+    dispatch ({
+        type: authTypes.REGISTER_START
+    })
+
+    console.log("user from frontend registation:", userObj)
+
+    axios.post("/register", { ...userObj })
+    .then(res =>{
+    console.log(res.data, 'res.data.users')
+    if (res.status === 201) {
+        const data = {
+            first_name: userObj.first_name,
+            last_name: userObj.last_name,
+            email: userObj.email,
+            firebase_id: userObj.firebase_id,
+        }
+        dispatch({
+            type: authTypes.REGISTER_SUCCESS,
+            payload: data
+        })
+    } else if (res.status === 400) {
+        dispatch({
+            type: authTypes.REGISTER_FAIL,
+            payload: res.data
+        })
+    }
+   })
+   .catch( err => {
+    dispatch({
+        type: authTypes.REGISTER_FAIL,
+        payload: err
+    })
+})
+    
 }
 
+export const logOut = () => (dispatch) => {
+    dispatch ({
+        type: authTypes.LOGOUT_START
+    })
+    dispatch ({
+        type: authTypes.LOGOUT_SUCCESS,
+        payload: true
+    })
+    dispatch ({
+        type: authTypes.LOGOUT_FAIL,
+        payload: 'Failed to log use out'
+    })
+}
 export default {
-    getUsers,
     register,
-    initOauth
+    initAuth,
+    logOut
 }

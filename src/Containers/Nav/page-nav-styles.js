@@ -3,11 +3,12 @@ import {whiteColor, goldColor, fontColor, lightGrayColor, purpleColor} from './.
 
 export const ProfileNavWrapper = styled.nav`
     display: flex;
-    font-size: .85rem;
+    font-size: 1rem;
     width: 100%;
     margin-top: 4rem;
     border: 1px solid orange;
     box-sizing: border-box;
+    justify-content: center;
     @media only screen and (max-width: 600px) {
         height: 9vh;
     }
@@ -18,7 +19,7 @@ export const ProfileNavWrapper = styled.nav`
 export const ProfileLinkContainer = styled.ul`
     display: flex;
     justify-content:space-around;
-    width: 25%;
+    width: 70%;
     font-weight: 400;
     border: 1px solid red;
      .link {

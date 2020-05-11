@@ -6,6 +6,10 @@ const whiteColor = '#FFFF';
 const fontColor = '#354248';
 const lightyellowColor = '#FEFCEE';
 const lightGrayColor = '#999';
+const  secondaryBtnColor  = "#80D0C7";
+const mainBtnColor = "#35ACDA";
+const GreenRadient = "#80D0C7";
+
 
 const smrtphn = '370px'; 
 const tablet = '600px';
@@ -86,7 +90,10 @@ export const LinkContainer = styled.ul`
     span {
         color: ${goldColor};
     }
-
+    .hide {
+        display: none;
+    }
+    
     .icon {
     color: ${whiteColor};
     }
@@ -188,6 +195,9 @@ export {
     purpleColor,
     fontColor,
     lightyellowColor,
-    lightGrayColor
+    lightGrayColor,
+    mainBtnColor,
+    secondaryBtnColor,
+    GreenRadient,
 }
 

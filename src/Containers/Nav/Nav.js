@@ -1,34 +1,36 @@
-import React, {useContext} from 'react';
+import React from 'react';
+import {useSelector} from "react-redux";
 import { auth} from './../../firebaseConfig';
 import { NavLink, withRouter } from 'react-router-dom';
-import {UserContext} from '../../Context/usersContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faShoppingCart} from '@fortawesome/free-solid-svg-icons';
-import {Header, NavWrapper, LinkContainer, Logo, PageNav, PageNavLinks,MobileLinks, MobileNav} from './../../GlobalStyles/styles';
+import {Header, NavWrapper, LinkContainer, Logo, PageNav, MobileLinks, MobileNav} from './../../GlobalStyles/styles';
+import {logOut} from './../../Store/Actions/users';
 
 const Nav= (props) => {
-    const [isloggedIn] = useContext(UserContext);
-    const [userProfile] = useContext(UserContext);
-
+    const loggedIn = useSelector(state => state.user.loggedIn);
+    const firebase_id = useSelector(state => state.user.firebase_id);
     const logout = () => {
         auth.signOut();
         localStorage.clear();
         props.history.push("/");
       };
 
-
-      console.log('props', props)
-    return (
+      return (
         <Header>
             <NavWrapper endNav>
                 <LinkContainer>
-                
-                <NavLink className='link' activeClassName='activeRoute' exact to='/signin'>
-                    {isloggedIn ? <button onClick={logout}>Sign Out</button> : 'Sign In'}
+                <button className={loggedIn ? null : 'hide'} onClick={logout}>Sign Out</button>
+                {/* <NavLink className='link' activeClassName='activeRoute' exact to='/signin'>
+                    Sign In
+                </NavLink> */}
+                <NavLink className='link' activeClassName='activeRoute' exact to={loggedIn ? `/profile/${firebase_id}` : '/register'}>
+                    {loggedIn ? 'Account' : 'Create An Account'}
                 </NavLink>
-                <span >or</span>
-                <NavLink className='link' activeClassName='activeRoute' exact to={isloggedIn ? `/profile/${userProfile.firebase_id}/settings` : '/register'}>
-                {isloggedIn ? 'Account' : 'Create An Account'}
+                <span className={loggedIn ? 'hide' : null}>or</span>
+
+                <NavLink className={loggedIn ? 'hide' : 'link'} activeClassName='activeRoute' exact to='/signin'>
+                        Sign In
                 </NavLink>
                 <NavLink exact to='/cart'>
                     <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
