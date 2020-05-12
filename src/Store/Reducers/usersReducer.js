@@ -74,7 +74,4 @@ export default (state = initialState, actions) => {
             default:
             return state;
     };
-
-  
-
-}
+};

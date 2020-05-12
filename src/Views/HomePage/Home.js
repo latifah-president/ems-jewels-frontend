@@ -1,11 +1,13 @@
 import React from 'react';
-import {Wrapper, } from './../../GlobalStyles/styles';
+import ProducstList from '../../Components/Products/ProductsList';
+import { Grid } from '@material-ui/core';
 
 const Home = () => {
+    
     return (
-        <Wrapper>
-            {/* <Carousel/> */}
-        </Wrapper>
+        <Grid>
+          <ProducstList/>
+        </Grid>
     )
 };
 

@@ -11,7 +11,7 @@ const ProfileNav = () => {
                 <NavLink className='link' activeClassName='activeRoute' exact to='/'>
                     Home
                 </NavLink>
-                <NavLink className='link' activeClassName='activeRoute' exact to={`/orders/${firebase_id}`}>
+                <NavLink className='link' activeClassName='activeRoute' exact to={`/profile/${firebase_id}/orders`}>
                     Orders
                 </NavLink>
                 <NavLink className='link' activeClassName='activeRoute' exact to={`/address`}>

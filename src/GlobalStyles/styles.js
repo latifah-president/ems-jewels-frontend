@@ -131,7 +131,6 @@ export const PageNav = styled.nav`
         text-transform: uppercase;
         font-size: .8rem;
         font-weight: 550;
-
         border-bottom: 1.2px solid transparent; /*CHANGED BORDER BOTTOM TO TRANSPARENT TO PREVENT ELEMENT FROM  MOVING */
         &:hover {
                 color: ${purpleColor};

@@ -60,7 +60,8 @@ const AddProduct = props => {
                     title: title,
                     description: description,
                     price: price,
-                    image_url: imageUrl
+                    image_url: imageUrl,
+                    // category: category
                 }
                 setImageUrl(imageUrl)
                 {/*TODO: 
@@ -124,7 +125,7 @@ const AddProduct = props => {
                     margin="normal"
                     ref={photoInp}
                 />
-                 <TextField
+                 {/* <TextField
                     className={classes.textFieldWide}
                     id="category"
                     type="text"
@@ -133,7 +134,7 @@ const AddProduct = props => {
                     variant="outlined"
                     value={category}
                     onChange={e => setCategory(e.target.value)}
-                />          
+                />           */}
             </form>
         </Grid>
     )

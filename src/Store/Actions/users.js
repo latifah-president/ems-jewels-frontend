@@ -35,8 +35,7 @@ export const register = (userObj) =>  (dispatch) => {
         type: authTypes.REGISTER_START
     })
 
-    axios.post("/register", { ...userObj })
-    .then(res =>{
+    axios.post("/register", { ...userObj }).then(res => {
     if (res.status === 201) {
         const data = {
             first_name: userObj.first_name,
@@ -54,8 +53,7 @@ export const register = (userObj) =>  (dispatch) => {
             payload: res.data
         })
     }
-   })
-   .catch( err => {
+   }).catch( err => {
     dispatch({
         type: authTypes.REGISTER_FAIL,
         payload: err

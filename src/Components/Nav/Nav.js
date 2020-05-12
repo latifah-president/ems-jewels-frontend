@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import { auth} from '../../firebaseConfig';
 import { NavLink, withRouter } from 'react-router-dom';
 import Badge from '@material-ui/core/Badge';
@@ -24,10 +24,16 @@ const Nav= (props) => {
     const loggedIn = useSelector(state => state.user.loggedIn);
     const firebase_id = useSelector(state => state.user.firebase_id);
     const qty = useSelector(state => state.user.cart.qty);
-        {/*TODO: CLEAN THIS UP TO INCLUDE A THEN CATCH  */}
+    const dispatch = useDispatch();
 
     const logout = () => {
-        auth.signOut();
+        auth.signOut().then(res => {
+            console.log("logout res: ", res)
+            dispatch(logOut())
+        })
+        .catch(err => {
+            console.log(err)
+        })
         localStorage.clear();
         props.history.push("/");
       };

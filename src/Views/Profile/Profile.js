@@ -4,7 +4,7 @@ import ProfileNav from '../../Components/Nav/ProfileNav';
 import {Wrapper, DarkTitle, ContentArea, } from '../../GlobalStyles/styles';
 
 const Profile = (props) => {
-
+    console.log("prams", props)
     return (
       <Wrapper>
         <ContentArea style={{width: '100%'}}>

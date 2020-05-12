@@ -7,6 +7,7 @@ import Form from './Containers/Forms/Forms';
 import HomePage from './Views/HomePage/Home';
 import ProfilePage from './Views/Profile/Profile';
 import AddProductPage from './Views/AddProductPage/AddProduct';
+import SignIn from './Containers/Forms/SignIn';
 import {initAuth} from "./Store/Actions/users";
 import './App.css';
 
@@ -37,8 +38,9 @@ function App(props) {
       <Nav/>
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route exact path='/profile/:firebase_id' component={ProfilePage} />
+        <Route exact path='/profile/:firebase_id/orders' component={ProfilePage} />
         <Route exact path='/register' component={Form}/>
+        <Route exact path="/signin" component={SignIn}/>
         {/* ROUTES BELOW THIS LINE WILL BE ADMIN ONLY */}
         <Route exact path='/addproduct' component={AddProductPage}/>
       </Switch>
