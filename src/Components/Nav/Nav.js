@@ -51,7 +51,7 @@ const Nav= (props) => {
             <NavWrapper endNav>
                 <LinkContainer>
                 <NavLink className={loggedIn ? 'link' : 'hide'} onClick={logout} to='/'>Sign Out</NavLink>
-                <NavLink className='link' activeClassName='activeRoute' exact to={loggedIn ? `/profile/${firebase_id}` : '/register'}>
+                <NavLink className='link' activeClassName='activeRoute' exact to={loggedIn ? `/profile/${firebase_id}/orders` : '/register'}>
                     {loggedIn ? 'Account' : 'Create An Account'}
                 </NavLink>
                 <span className={loggedIn ? 'hide' : null}>or</span>

@@ -16,6 +16,7 @@
     "cra-template": "1.0.2",
     "firebase": "^7.11.0",
     "formik": "^2.1.4",
+    "material-ui-dropzone": "^3.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",
