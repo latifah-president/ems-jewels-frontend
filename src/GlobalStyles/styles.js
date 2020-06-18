@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+// const goldColor = '#F4D212';
 
-const goldColor = '#F4D212';
-const purpleColor = '#AA65FF';
-const whiteColor = '#FFFF';
+const goldColor = '#fab904';
+// const purpleColor = '#AA65FF';
+const purpleColor = '#2c1466';
+const whiteColor = '#FEFCED';
 const fontColor = '#354248';
 const lightyellowColor = '#FEFCEE';
 const lightGrayColor = '#999';
@@ -115,8 +117,12 @@ export const Logo = styled.h1`
     border-radius: 50%;
     width: 15%;
     text-align: center;
-    margin: 3rem auto 0 auto;
+    margin: 8rem auto 0 auto;
     border: 1px solid pink;
+    @media only screen and (max-width: ${smrtphn}) {
+        margin: 15rem auto 0 auto;
+
+    }
 `;
 
 export const PageNav = styled.nav`
@@ -146,6 +152,10 @@ export const PageNav = styled.nav`
        .link {
            font-size: 1rem;
        }
+    }
+    @media only screen and (max-width: ${smrtphn}) {
+        display: ${props => props.mobile ? 'none' : 'flex'};
+
     }
 `;
 
@@ -186,6 +196,7 @@ export const MobileNav = styled.section`
     @media only screen and (max-width: ${tablet}) {
         display: block;
     }
+    
 `;
 
 export const DarkTitle = styled.h2`
@@ -195,7 +206,10 @@ export const DarkTitle = styled.h2`
     margin-top: 3rem;
     border: 1px solid orange;
 `;
-export {
+
+const categories = ["Earring", "necklaces", "bracelets", "rings", "guy pieces", "earring sets", "chockers", "hairclips", "anklets"]
+
+export  {
     whiteColor, 
     goldColor,
     purpleColor,
@@ -205,5 +219,6 @@ export {
     mainBtnColor,
     secondaryBtnColor,
     GreenRadient,
+    categories
 }
 

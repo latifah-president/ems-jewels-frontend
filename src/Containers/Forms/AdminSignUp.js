@@ -5,10 +5,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from '@material-ui/core/Grid';
 import TextField from "@material-ui/core/TextField";
-import {purpleColor, goldColor} from '../../GlobalStyles/styles'
 import {useDispatch} from 'react-redux';
-import { register } from "../../Store/Actions/users";
+import { registerAdmin } from "../../Store/Actions/admin";
 import { Typography } from '@material-ui/core';
+import {purpleColor, goldColor} from "./../../GlobalStyles/styles";
 
 const useStyles = makeStyles(theme => ({
   wrapper: {
@@ -30,11 +30,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     alignItems: "center",
     width: "75%",
-    // border: "1px solid red",
-    marginTop: "2rem",
     [theme.breakpoints.down('xs')]: { 
       marginRight: "3.5rem"
     },
+  //  border: "1px solid red"
   },
   formControl: {
     // border: "1px solid blue",
@@ -43,10 +42,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: "2rem",
-    [theme.breakpoints.down('xs')]: { 
-      flexDirection: "column",
-      // marginBottom: "0"
-    },
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: "column"
+    }
     // minWidth: 120,
     // maxWidth: 280
   },
@@ -54,8 +52,7 @@ const useStyles = makeStyles(theme => ({
   //   marginLeft: theme.spacing(1),
   //   marginRight: theme.spacing(1),
   //   width: "200px",
-  //   justifyContent: "left",
-    
+  //   justifyContent: "left"
   // },
   textFieldWide: {
     marginLeft: theme.spacing(1),
@@ -88,9 +85,9 @@ const useStyles = makeStyles(theme => ({
   btn: {
     margin: "2rem auto",
     color: "white",
-    width: "25%",
+    width: "20%",
     backgroundColor: `${purpleColor}`,
-    borderRadius: 0,
+
     "&:hover": {
       backgroundColor: `${goldColor}`,
 
@@ -98,7 +95,18 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: { 
       width: "90%",
     },
-},
+  },
+  heading: {
+      margin: "4rem",
+      // border: "1px solid green",
+      textTransform: "uppercase",
+      textAlign: "center",
+      [theme.breakpoints.down('xs')]: { 
+        width: "90%",
+        fontSize: "1.5rem",
+        lineHeight: 2
+      },
+  }
 }));
 
   const Form = (props) => {
@@ -113,47 +121,86 @@ const useStyles = makeStyles(theme => ({
     const classes = useStyles();
     const dispatch = useDispatch();
 
-   const signUpWithEmailAndPassword = () => {
-    if (!email || !password) {
-      setError(true)
-      setErrorMsg("Please enter email and password")
-    }
-    auth
-        .createUserWithEmailAndPassword(email, password)
-        .then(({ user }) => {
-          if (user) {
-            console.log("incoming user", user);
-            if (user.email) {
-              const { email, uid } = user;
-              localStorage.setItem("firebase_id", uid)
-              console.log("emailuser", user);
-              const userObj = {
-                email,
-                firebase_id: uid,
-                first_name: first_name,
-                last_name: last_name,
-                };
-                console.log("userObj", userObj)
-                dispatch(register(userObj))
-                  props.history.push(`/profile/${userObj.firebase_id}/orders`)
+    const signUpWithEmailAndPassword = () => {
+      if (!email || !password) {
+        setError(true)
+        setErrorMsg("Please enter email and password")
+      }
+      auth
+          .createUserWithEmailAndPassword(email, password)
+          .then(({ user }) => {
+            if (user) {
+              console.log("incoming user", user);
+              if (user.email) {
+                const { email, uid } = user;
+                console.log("emailuser", user);
+                const userObj = {
+                  email,
+                  firebase_id: uid,
+                  first_name: first_name,
+                  last_name: last_name,
+                  // admin: true
+                  };
+                  console.log("userObj", userObj)
+                  dispatch(registerAdmin(userObj))
+                    props.history.push(`/profile/${userObj.firebase_id}`)
+              }
             }
-          }
-        })
-        .catch(err => {
-          console.log("Error Authenticating User:", err)
-          setError(true)
-          setErrorMsg(err.message)
-        })
-  };
+          })
+          .catch(err => {
+            console.log("Error Authenticating User:", err)
+            setError(true)
+            setErrorMsg(err.message)
+          })
+    };
+  //  const signUpWithEmailAndPassword = () => {
+  //   if (!email || !password) {
+  //     setError(true)
+  //     setErrorMsg("Please enter email and password")
+  //   }
+  //   auth
+  //       .createUserWithEmailAndPassword(email, password)
+  //       .then(({ user }) => {
+  //         if (user) {
+  //           if (user.email) {
+  //               const { email, uid } = user;
+  //               auth.currentUser.getIdTokenResult().then ( (idToken) => {
+  //                 if (!!idToken.claims.admin) {
+  //                   setError(true)
+  //                   setErrorMsg("This user is already an admin")
+  //                 } else {
+  //                   console.log("User:", user)
+  //                   const userObj = {
+  //                     email,
+  //                     firebase_id: user.uid,
+  //                     first_name: first_name,
+  //                     last_name: last_name,
 
-  console.log(email, 'email')
+  //                     };
+  //                     dispatch(registerAdmin(userObj))
+  //                     props.history.push(`/profile/${userObj.firebase_id}/orders`)
+  //                 }
+  //               })
+  //           } else {
+  //             setError(true);
+  //             setErrorMsg("A user was not added")
+  //           }
+  //         }
+  //       })
+  //       .catch(err => {
+  //         console.log("Error Authenticating User:", err)
+  //         setError(true)
+  //         setErrorMsg(err.message)
+  //       })
+  // };
+
       return (
         <Grid container item xs={12} className={classes.wrapper}>
-          <Typography variant="h4" component="h4">Welcome To Em's Jewels!</Typography>
+            <Typography className={classes.heading} component="h1" variant="h4">Welcome, create your admin account!</Typography>
           <form className={classes.form} >
             <FormControl className={classes.formControl}>
               <TextField
-                htmlFor="first name"
+                for="firstName"
                 required
                 className={classes.textFieldWide}
                 id="firstName"
@@ -208,7 +255,7 @@ const useStyles = makeStyles(theme => ({
               />
             </FormControl>
           </form>
-          <Button aria-label="sigup" className={classes.btn} type="submit" variant="contained" color="primary" onClick={signUpWithEmailAndPassword}>Sign Up</Button>
+          <Button aria-label="signup" className={classes.btn} type="submit" variant="contained" color="primary" onClick={signUpWithEmailAndPassword}>Sign Up</Button>
       </Grid>
     )
   }

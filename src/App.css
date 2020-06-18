@@ -26,6 +26,8 @@
 
 .App-link {
   color: #61dafb;
+  color: #d3d2d2;
+  color: #291950;
 }
 
 @keyframes App-logo-spin {
@@ -41,6 +43,14 @@
   display: none impo; 
 }
 
+.wrapper {
+  margin: 5rem auto  25.5rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* border: 5px solid saddlebrown; */
+}
 /* .carousel .carousel-control { visibility: hidden; } */
 
 /* .carousel {
